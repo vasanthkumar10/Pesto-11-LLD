@@ -1,5 +1,5 @@
 // Liskov's Substitution Principle
-// It means the subclass should be substitutable for the base class
+// It means the child class should be substitutable for the base class
 
 class Item {
   constructor(name, price, quantity) {
