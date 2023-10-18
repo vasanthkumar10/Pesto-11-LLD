@@ -125,6 +125,7 @@ class UserSession {
         return;
       }
       console.log("overlapping seats", overlappingSeats);
+      this.selectedSeats = seatNames;
       this.screen.bookSeats(seatNames);
     } else {
       console.log("Current session is not active. Please login again");
@@ -212,25 +213,25 @@ PVR.addShow(midnightShow);
 // console.log("After releasing", screen1.getAvailableSeats());
 
 // // 2 users logging and booking different seat
-const shivam = new UserSession("Shivam", morningShow.screen);
-const mahipal = new UserSession("Mahipal", morningShow.screen);
-shivam.selectSeats(["A1"]);
-console.log(`Seats selected by ${shivam.user}: ${shivam.selectedSeats}`);
-console.log(morningShow.screen.getAvailableSeats());
-mahipal.selectSeats(["B1"]);
-console.log(`Seats selected by ${mahipal.user}: ${mahipal.selectedSeats}`);
-console.log(morningShow.screen.getAvailableSeats());
-shivam.makePayment();
-mahipal.makePayment();
-
-// 2 users logging and booking same seat
 // const shivam = new UserSession("Shivam", morningShow.screen);
 // const mahipal = new UserSession("Mahipal", morningShow.screen);
 // shivam.selectSeats(["A1"]);
 // console.log(`Seats selected by ${shivam.user}: ${shivam.selectedSeats}`);
 // console.log(morningShow.screen.getAvailableSeats());
-// mahipal.selectSeats(["A1"]);
+// mahipal.selectSeats(["B1"]);
 // console.log(`Seats selected by ${mahipal.user}: ${mahipal.selectedSeats}`);
 // console.log(morningShow.screen.getAvailableSeats());
 // shivam.makePayment();
 // mahipal.makePayment();
+
+// 2 users logging and booking same seat
+const shivam = new UserSession("Shivam", morningShow.screen);
+const mahipal = new UserSession("Mahipal", morningShow.screen);
+shivam.selectSeats(["A1"]);
+console.log(`Seats selected by ${shivam.user}: ${shivam.selectedSeats}`);
+console.log(morningShow.screen.getAvailableSeats());
+mahipal.selectSeats(["A1"]);
+console.log(`Seats selected by ${mahipal.user}: ${mahipal.selectedSeats}`);
+console.log(morningShow.screen.getAvailableSeats());
+shivam.makePayment();
+mahipal.makePayment();
