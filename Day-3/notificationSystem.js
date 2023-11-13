@@ -32,6 +32,7 @@ class YoutubeChannel {
   }
 
   uploadVideo(videoTitle) {
+    console.log("-".repeat(60));
     console.log(`New video uploaded by ${this.channelName}: ${videoTitle}`);
     console.log("-".repeat(60));
     this.notification.notifyVideoUploaded(
@@ -42,6 +43,7 @@ class YoutubeChannel {
   }
 
   upcomingVideo(videoTitle) {
+    console.log("-".repeat(60));
     console.log(`Upcoming video by ${this.channelName}: ${videoTitle}`);
     console.log("-".repeat(60));
     this.notification.notifyUpcomingVideo(

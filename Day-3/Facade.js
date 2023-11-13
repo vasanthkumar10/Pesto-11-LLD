@@ -42,8 +42,6 @@ class Auth {
 
   google(username) {
     this.googleAuth.authenticate(username);
-    // otp ->
-    this.googleAuth.otp("1234");
   }
 
   github(username) {
