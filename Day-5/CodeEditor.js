@@ -51,7 +51,8 @@ class CodeEditor {
     this.currentIndex = 0;
   }
 
-  save(memento) {
+  save(file) {
+    const memento = file.createMemento();
     this.history.push(memento);
     this.currentIndex = this.history.length - 1;
   }
@@ -81,20 +82,20 @@ const file = new TextFile();
 
 // // Editor
 const vscode = new CodeEditor();
-// vscode.save(file.createMemento());
+// vscode.save(file);
 // console.log(vscode);
 
 // file.setContent("modified content....");
-// vscode.save(file.createMemento());
+// vscode.save(file);
 // console.log(vscode);
 // console.log(file.getContent());
 
 file.setContent("1");
-vscode.save(file.createMemento());
+vscode.save(file);
 file.setContent("12");
-vscode.save(file.createMemento());
+vscode.save(file);
 file.setContent("123");
-vscode.save(file.createMemento());
+vscode.save(file);
 
 // UNDO ops
 console.log("=".repeat(50));
@@ -120,7 +121,7 @@ vscode.redo(file);
 console.log(file.getContent());
 
 file.setContent("1234");
-vscode.save(file.createMemento());
+vscode.save(file);
 
 console.log(file.getContent());
 vscode.undo(file);
