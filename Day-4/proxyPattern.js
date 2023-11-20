@@ -10,6 +10,7 @@ class BankAccount {
   }
 
   deposit(amount) {
+    console.log("amount", amount);
     this.balance += amount;
     return `Deposited ${amount}. New balance is ${this.balance}`;
   }
@@ -24,7 +25,7 @@ class BankAccount {
   }
 }
 
-const vasanth = new BankAccount(1000);
+const vasanth = new BankAccount(0);
 // console.log(vasanth.checkBalance());
 // vasanth.deposit(100);
 // console.log(vasanth.checkBalance());
@@ -43,17 +44,20 @@ const shivam = new Proxy(vasanth, {
   },
 
   set(target, property, newValue) {
+    // console.log("-----", target, "----", property, "value", newValue);
     if (property === "balance" && newValue < 0) {
       console.log("Invalid data");
+      return false; // Return false to indicate that the assignment was not successful
     } else {
-      target.deposit(newValue);
+      target[property] = newValue;
+      return true; // Return true to indicate that the assignment was successful
     }
   },
 });
 
+// Now it should work without the TypeError
 console.log(shivam.checkBalance());
-shivam.deposit = 200;
-// console.log(shivam.checkBalance());
-// console.log(shivam.withdraw);
-// shivam.balance = 100;
-// console.log(shivam.checkBalance());
+shivam.deposit(1000);
+console.log(shivam.checkBalance());
+shivam.deposit(1000);
+console.log(shivam.checkBalance());
